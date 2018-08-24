@@ -18,12 +18,13 @@ public static void main(String[] args) throws Exception {
     String inputLine = null;
     while ((inputLine = reader.readLine()) != null) {
         System.out.println(inputLine);
-        
+        list.add(inputLine);
     }
     FileWriter fw = new FileWriter("/");
     BufferedWriter bw = new BufferedWriter(fw);
-    
-    bw.write(contenido);
+    for(String i: list){
+        bw.write(i);
+    }
     bw.close();
     } catch (IOException x) {
         System.err.println(x);
