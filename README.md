@@ -1,6 +1,7 @@
 ## Taller de Clientes y servicios
 ======
-*AREM
+
+AREM
 
 por: Alejandro Rodriguez del toro
 
