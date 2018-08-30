@@ -1,4 +1,4 @@
-package edu.escuelaing.arem;
+package edu.escuelaing.arem.punto5;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

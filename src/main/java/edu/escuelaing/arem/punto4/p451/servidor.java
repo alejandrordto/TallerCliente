@@ -1,9 +1,9 @@
-package edu.escuelaing.arem;
+package edu.escuelaing.arem.punto4.p451;
 
 import java.net.*;
 import java.io.*;
 
-public class Punto451 {
+public class servidor {
 
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = null;
@@ -14,6 +14,7 @@ public class Punto451 {
             System.exit(1);
         }
         Socket clientSocket = null;
+        while (true){
         try {
             System.out.println("Listo para recibir ...");
             clientSocket = serverSocket.accept();
@@ -24,13 +25,17 @@ public class Punto451 {
         PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         String inputLine, outputLine;
+        String inputu = null;
         while ((inputLine = in.readLine()) != null) {
-            System.out.println("Received: " + inputLine);
+            //System.out.println("Received: " + inputLine);
             if (!in.ready()) {
                 break;
             }
         }
-        outputLine = "<!DOCTYPE html>"
+        outputLine ="HTTP/1.1 200 OK\r\n"
+                + "Content-Type: text/html\r\n"
+                + "\r\n" 
+                +"<!DOCTYPE html>"
                 + "<html>"
                 + "<head>"
                 + "<meta charset=\"UTF-8\">"
@@ -41,9 +46,6 @@ public class Punto451 {
                 + "</body>"
                 + "</html>" + inputLine;
         out.println(outputLine);
-        out.close();
-        in.close();
-        clientSocket.close();
-        serverSocket.close();
+        }
     }
 }

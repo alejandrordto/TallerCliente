@@ -1,4 +1,4 @@
-package edu.escuelaing.arem;
+package edu.escuelaing.arem.punto6;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

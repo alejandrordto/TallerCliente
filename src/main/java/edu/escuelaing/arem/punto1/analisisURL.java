@@ -1,5 +1,5 @@
 
-package edu.escuelaing.arem;
+package edu.escuelaing.arem.punto1;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  *
  * @author alejandro
  */
-public class Punto1URL{
+public class analisisURL{
     public static void main(String[] args) {
         read();
         
@@ -31,7 +31,7 @@ public class Punto1URL{
             System.out.println("Ref->   "+ myUrl.getRef());
                        
         } catch (MalformedURLException ex) {
-            Logger.getLogger(Punto1URL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(analisisURL.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

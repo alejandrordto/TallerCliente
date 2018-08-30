@@ -1,5 +1,6 @@
-package edu.escuelaing.arem;
+package edu.escuelaing.arem.punto6;
 
+import edu.escuelaing.arem.punto6.EchoServer;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -7,8 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class EchoServerImpl implements EchoServer {
 
-    public EchoServerImpl(String ipRMIregistry,
-            int puertoRMIregistry, String nombreDePublicacion) {
+    public EchoServerImpl(String ipRMIregistry,int puertoRMIregistry, String nombreDePublicacion) {
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
         }

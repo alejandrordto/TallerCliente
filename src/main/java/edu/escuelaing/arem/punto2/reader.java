@@ -1,10 +1,10 @@
-package edu.escuelaing.arem;
+package edu.escuelaing.arem.punto2;
 
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
-public class Punto2reader {
+public class reader {
 
     private static ArrayList<String> list;
 
