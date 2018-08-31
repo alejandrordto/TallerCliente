@@ -14,38 +14,56 @@ public class servidor {
             System.exit(1);
         }
         Socket clientSocket = null;
-        while (true){
-        try {
-            System.out.println("Listo para recibir ...");
-            clientSocket = serverSocket.accept();
-        } catch (IOException e) {
-            System.err.println("Accept failed.");
-            System.exit(1);
-        }
-        PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        String inputLine, outputLine;
-        String inputu = null;
-        while ((inputLine = in.readLine()) != null) {
-            //System.out.println("Received: " + inputLine);
-            if (!in.ready()) {
-                break;
+        while (true) {
+            try {
+                System.out.println("Listo para recibir ...");
+                clientSocket = serverSocket.accept();
+            } catch (IOException e) {
+                System.err.println("Accept failed.");
+                System.exit(1);
             }
-        }
-        outputLine ="HTTP/1.1 200 OK\r\n"
-                + "Content-Type: text/html\r\n"
-                + "\r\n" 
-                +"<!DOCTYPE html>"
-                + "<html>"
-                + "<head>"
-                + "<meta charset=\"UTF-8\">"
-                + "<title>Title of the document</title>\n"
-                + "</head>"
-                + "<body>"
-                + "My Web Site"
-                + "</body>"
-                + "</html>" + inputLine;
-        out.println(outputLine);
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            String inputLine, outputLine;
+            String inputu = null;
+            while ((inputLine = in.readLine()) != null) {
+                try {
+                    if (inputLine.startsWith("GET")) {
+                        if (!inputLine.startsWith("GET / ")) {
+                            inputu = inputLine;
+                        }
+                    }
+                } catch (java.lang.StringIndexOutOfBoundsException e) {
+                }
+                //System.out.println(inputLine);
+                if (!in.ready()) {
+                    break;
+                }
+            }
+            if (inputu != null) {
+                String[] temp;
+                temp = inputu.split(" ");
+                System.out.println(temp[1]);
+                File f = new File(temp[1].substring(1));
+                BufferedReader entrada;
+                String flag="";
+                try {
+                    entrada = new BufferedReader(new FileReader(f));
+                    while (entrada.ready()) {
+                        flag += entrada.readLine();
+                    }
+                    
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                inputu=flag;
+            }
+            outputLine = "HTTP/1.1 200 OK\r\n"
+                    + "Content-Type: text/html\r\n"
+                    + "\r\n"
+                    + inputu
+                    + inputLine;
+            out.println(outputLine);
         }
     }
 }
